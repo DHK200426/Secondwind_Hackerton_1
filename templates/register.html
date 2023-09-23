@@ -1,10 +1,10 @@
-{% with messages = get_flashed_messages() %}
+<!-- {% with messages = get_flashed_messages() %}
     {% if messages %}
         <script>
             alert("{{messages[-1]}}")
         </script>
     {% endif %}
-{% endwith %}
+{% endwith %} -->
 
 
 
@@ -15,8 +15,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration Page</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&family=Nanum+Pen+Script&family=Yeon+Sung&display=swap');
         body {
-            font-family: Arial, sans-serif;
+            padding: 0;
+            margin: 0 auto;
+            font-family: 'Yeon Sung', cursive;
+            max-width: 50%;
         }
         .container {
             width: 50%;
@@ -24,9 +28,11 @@
             padding: 20px;
         }
         h2 {
+            font-size: 30px;
             text-align: center;
         }
         label {
+            font-size: 20px;
             display: block;
             margin-bottom: 5px;
         }
@@ -34,20 +40,21 @@
         input[type="password"] {
             width: 100%;
             padding: 10px;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
             border: 1px solid #ccc;
             border-radius: 4px;
         }
         input[type="submit"] {
-            background-color: #4CAF50;
+            background-color: #7cd37f;
             color: white;
-            padding: 10px 20px;
+            padding: 5px 5px;
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            font-size: 20px;
         }
         input[type="submit"]:hover {
-            background-color: #45a049;
+            background-color: #46b14b;
         }
     </style>
 </head>
@@ -64,7 +71,7 @@
             <label for="password_check">비말번호 확인:</label>
             <input type="password" id="password_check" name="password_check" required>
             
-            <input type="submit" value="Register">
+            <input type="submit" value="✅">
             </form>
     </div>
 </body>
