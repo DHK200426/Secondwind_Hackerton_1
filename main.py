@@ -10,7 +10,7 @@ login_file_path = 'user_database.csv'
 lundary_file_path = 'lundary_database.csv'
 chat_file_path = 'chat_database.csv'
 
-chat_item = ['세탁물을 꺼내놓겠습니다.','세탁/건조가 완료되었습니다.','세탁물이 남아있습니다.','방문 부탁 드립니다.']
+chat_item = ['세탁물을 꺼내놓겠습니다.','세탁에 이상이 있습니다.','세탁물이 남아있습니다.','방문 부탁 드립니다.','표시할 메시지가 없습니다.']
 
 def typetrans(time): #str to datetime type
     strformat ='%Y-%m-%d %H:%M:%S.%f'
@@ -154,6 +154,7 @@ def check_chat(reciever): #나에게로 온 채팅 return
                 send_time += ' 전에 보냄'
 
                 sent_me_chats.append([sender, int(message), send_time])
+
             data.append(row)
 
     
@@ -162,7 +163,10 @@ def check_chat(reciever): #나에게로 온 채팅 return
         for row in data:
             csv_writer.writerow(row)
 
-    return sent_me_chats
+    if sent_me_chats:
+        return sent_me_chats
+    else:
+        return [['',4,'']]
 
 def typetrans(time): #str to datetime type
     strformat ='%Y-%m-%d %H:%M:%S.%f'
@@ -170,29 +174,32 @@ def typetrans(time): #str to datetime type
 
 def left_time_chat(time): #datetime type
     time_diff = int((datetime.now()-time).total_seconds())
-    date = time_diff // 3600*60*24
+    date = time_diff // (3600*60*24)
     hour = (time_diff - date*3600*60*24) // 3600
-    minute = (time_diff-3600*hour)%60
+    minute = (time_diff-3600*hour- date*3600*60*24)//60
     #second = (time_diff-3600*hour)%60
         
-    return [f'{date}일', f'{hour}시간', f'{minute}분']
+    return [f'{hour}시간', f'{minute}분']
 
 init_laundry()
 
 @app.route('/',methods = ['POST','GET'])
 def main_page():
-    check_end_use()
-    ids = request.cookies.get('loginid')
-    chatlist = check_chat(ids)
-    chatlist[-1][1] = chat_item[int(chatlist[-1][1])]
-    timelist = time_left()
-    if request.method == 'POST':
-        return redirect(url_for(("login")))
-    else:
+    if request.cookies.get('loginid'):
+        check_end_use()
+        ids = request.cookies.get('loginid')
+        chatlist = check_chat(ids)
+        chatlist[-1][1] = chat_item[int(chatlist[-1][1])]
+        timelist = time_left()
+        if request.method == 'POST':
+            return redirect(url_for(("login")))
         if chatlist != []:
-            return render_template('index.html', lundata = timelist , id = ids , chat = chatlist)
+            return render_template('index.html', lundata = timelist , id = '환영합니다 ' +ids +'호 님' , chat = chatlist)
         else:
-            return render_template('index.html', lundata = timelist , id = ids , chat = [["받은"],["메시지"],["없음"]])
+            return render_template('index.html', lundata = timelist , id = '환영합니다 ' +ids +'호 님' , chat = [["받은"],["메시지"],["없음"]])
+
+    else:
+        return redirect(url_for('login'))
 
 @app.route('/register' , methods = ['POST','GET'])
 def register():
@@ -221,7 +228,7 @@ def login():
         password = request.form['password']
         if user_login(room,password):
             resp = make_response(redirect('/'))
-            resp.set_cookie('loginid',room ,domain='127.0.0.1')
+            resp.set_cookie('loginid',room ,domain= 'secondwind-hackerton-bjdzu.run.goorm.io')
             return resp
         else:
             flash("잘못된 호수, 비밀번호입니다.")
@@ -234,7 +241,7 @@ def login():
 @app.route('/using' , methods = ["POST","GET"])
 def using():
     lundary_number = request.args.get('lnum', "lundary_number_fail")
-    user = request.args.get('user', "user_fail")
+    user = request.cookies.get('loginid')
     start_time = str(datetime.now())
     start_use(int(lundary_number),user,start_time)
     #http://127.0.0.1:5000/using?lnum=1&user=708
@@ -252,9 +259,8 @@ def chatdata():
     #http://127.0.0.1:5000/using?lnum=1&user=708
     if msg != 'msg_fail':
         sender = request.cookies.get('loginid')
-        print(who_occupied())
+
         pre_user = who_occupied()[int(lundary_number)]
-        print(pre_user)
         make_chat(sender,pre_user,msg)
         return redirect(url_for(("main_page")))
 

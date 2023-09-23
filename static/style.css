@@ -4,21 +4,19 @@ body {
     padding: 0;
     margin: 0 auto;
     font-family: 'Do Hyeon', cursive;
-    max-width: 40%;
+    /* max-width: 40%; */
 }
 
 h1 {
+    margin: 0 auto;
     font-size: 60px;        
     text-align: center;
 }
 
 .chat-message-text {
-    font-size: 30px;
     text-align: center;
-    border: 1px solid black;
+    border: 5px solid black;
     border-radius: 12px;
-    margin: 0 auto;
-    max-width: 500px;
 }
 
 button {
@@ -26,21 +24,47 @@ button {
     padding: 20px 10px 20px 10px;
     font-size: 100px;
     margin: 1%;
-    margin-right: 7%;
-    margin-left: 10%;
 }
 
+.lotext {
+    font-size: 20px;
+    margin: 20px;
+    border-radius: 8px;
+    background-color: lightgray;
+    padding: 10px 20px 10px 20px;
+}
+
+.con {
+    display: grid;
+    grid-template-columns: 1fr 8fr;
+}
+
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+
+
+
 .img {
-    margin-left: 25px;
-    margin-top: 25px;
+    margin: 0 auto;
     text-align: center;
 }
 
 .btn-secondary {
-    position: fixed;
-    right: 350px;
-    top: 80px;
     font-size: 20px;
     margin: 20px;
 
+}
+
+
+.hstack {
+    margin-top: 30px;
+    margin-bottom: 50px;
+    height: 50%;
+    max-width: 100%;
+    border: 10px rgb(255, 169, 64);
+    border-radius: 4px;
 }
