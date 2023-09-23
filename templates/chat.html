@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chat</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&family=Nanum+Pen+Script&family=Yeon+Sung&display=swap');
+        body {
+            padding: 0;
+            margin: 0 auto;
+            font-family: 'Yeon Sung', cursive;
+            max-width: 500px;
+            font-size: 20px;
+        }
+        
+        .messages > .message {
+        border-bottom: 1px solid #ccc;
+        }
+        .messages {
+        display: flex;
+        flex-direction: row;
+        }
+
+        .message {
+        width: 50%;
+        border: 1px solid #ccc;
+        padding: 15px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+        }
+
+        .message.other {
+        float: left;
+        }
+
+        .message.me {
+        float: right;
+        background-color: rgb(251, 251, 182);
+        }
+
+        .form-group {
+          position: fixed;
+          bottom: 30px;
+          right: 600px;
+        }
+    </style>
+
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="messages">
+          <!-- 메시지 목록을 표시할 영역 -->
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group">
+          <input type="text" class="form-control" id="message" placeholder="메시지를 입력하세요">
+        </div>
+        <button type="button" class="btn btn-primary" id="send">보내기</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"></script>
+  <script>
+    // 메시지 목록을 초기화합니다.
+    const messages = [];
+
+    // 메시지를 추가합니다.
+    const addMessage = (message) => {
+      messages.push(message);
+
+      // 메시지 목록을 다시 렌더링합니다.
+      const messagesEl = document.querySelector('.messages');
+      messagesEl.innerHTML = messages.map((message) => `
+        <div class="message ${message.sender === 'me' ? 'me' : 'other'}">
+          <p>${message.text}</p>
+        </div>
+      `).join('');
+    };
+
+    // 메시지를 보내는 이벤트를 처리합니다.
+    const sendButton = document.querySelector('#send');
+    sendButton.addEventListener('click', () => {
+      // 메시지를 가져옵니다.
+      const message = document.querySelector('#message').value;
+      const sender = document.querySelector('#message').dataset.sender;
+
+      // 메시지를 추가합니다.
+      addMessage({
+        text: message,
+        sender: 'me',
+      });
+
+      // 메시지 입력 양식을 초기화합니다.
+      document.querySelector('#message').value = '';
+    });
+
+    // 초기 메시지를 추가합니다.
+    addMessage({
+      text: 'Hello, world!',
+      sender: 'other',
+    });
+  </script>
+</body>
+</html>

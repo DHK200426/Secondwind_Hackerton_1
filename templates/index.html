@@ -7,38 +7,38 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 </head>
 <body>
-    <h1 class="fw-bold">🫧빨래 좀 잘 빼라</h1>
     <link rel="stylesheet" href="/static/style.css">
-    <form method="post">
-        <button type="submit" class="btn btn-secondary">로그인</button>
+    <h1 class="fw-bold">🫧빨래 좀 잘 빼라</h1>
+    <form method="post"> 
+        <button type="sumbit" class="btn btn-secondary">로그인</button>
     </form>
     <div class="chat-box">
         <p class="chat-message-text">사용자가 보낸 메시지</p>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-    <button type="button" id="wash1" href="wash1.html" class="btn btn-outline-primary">1번 세탁기<br>이용 가능</button>
-    <button type="button" id="wash2" href="wash2.html" class="btn btn-outline-primary">2번 세탁기<br>이용 가능</button>
-    <button type="button" id="wash3" href="wash3.html" class="btn btn-outline-primary">3번 세탁기<br>이용 가능</button>
-    <img class="img" id="wash1" src="https://cdn-icons-png.flaticon.com/512/2094/2094251.png" width="180px">
-    <img class="img" id="wash2" src="https://cdn-icons-png.flaticon.com/512/2094/2094251.png" width="180px">
-    <img class="img" id="wash3" src="https://cdn-icons-png.flaticon.com/512/2094/2094251.png" width="180px">
-    <button type="button" id="wash4" href="wash4.html" class="btn btn-outline-primary">4번 세탁기<br>이용 가능</button>
-    <button type="button" id="wash5" href="wash5.html" class="btn btn-outline-primary">5번 세탁기<br>이용 가능</button>
-    <button type="button" id="wash6" href="wash6.html" class="btn btn-outline-primary">6번 세탁기<br>이용 가능</button>
-    <img class="img" id="wash4" src="https://cdn-icons-png.flaticon.com/512/2094/2094251.png" width="180px">
-    <img class="img" id="wash5" src="https://cdn-icons-png.flaticon.com/512/2094/2094251.png" width="180px">
-    <img class="img" id="wash6" src="https://cdn-icons-png.flaticon.com/512/2094/2094251.png" width="180px">
-    <button type="button" id="dry1" href="dry1.html" class="btn btn-outline-primary">1번 건조기<br>이용 가능</button>
-    <button type="button" id="dry2" href="dry2.html" class="btn btn-outline-primary">2번 건조기<br>이용 가능</button>
-    <button type="button" id="dry3" href="dry3.html" class="btn btn-outline-primary">3번 건조기<br>이용 가능</button>
-    <img class="img" id="dry1" src="https://cdn-icons-png.flaticon.com/512/2432/2432216.png" width="180px">
-    <img class="img" id="dry2" src="https://cdn-icons-png.flaticon.com/512/2432/2432216.png" width="180px">
-    <img class="img" id="dry3" src="https://cdn-icons-png.flaticon.com/512/2432/2432216.png" width="180px">
-    <button type="button" id="dry4" href="dry4.html" class="btn btn-outline-primary">4번 건조기<br>이용 가능</button>
-    <button type="button" id="dry5" href="dry5.html" class="btn btn-outline-primary">5번 건조기<br>이용 가능</button>
-    <button type="button" id="dry6" href="dry6.html" class="btn btn-outline-primary">6번 건조기<br>이용 가능</button>
-    <img class="img" id="dry4" src="https://cdn-icons-png.flaticon.com/512/2432/2432216.png" width="180px">
-    <img class="img" id="dry5" src="https://cdn-icons-png.flaticon.com/512/2432/2432216.png" width="180px">
-    <img class="img" id="dry6" src="https://cdn-icons-png.flaticon.com/512/2432/2432216.png" width="180px">
+    <img class="img" id="wash1" src="https://cdn-icons-png.flaticon.com/512/2094/2094251.png" width="160px">
+    <img class="img" id="wash2" src="https://cdn-icons-png.flaticon.com/512/2094/2094251.png" width="160px">
+    <img class="img" id="wash3" src="https://cdn-icons-png.flaticon.com/512/2094/2094251.png" width="160px">
+    <button type="button" id="wash1" onclick="location.href='/chat?lnum=wash1'" class="btn btn-outline-primary">1번 세탁기<br>{{lundata[0]}}</button>
+    <button type="button" id="wash2" onclick="location.href='/chat?lnum=wash2'" class="btn btn-outline-primary">2번 세탁기<br>{{lundata[1]}}</button>
+    <button type="button" id="wash3" onclick="location.href='/chat?lnum=wash3'" class="btn btn-outline-primary">3번 세탁기<br>{{lundata[2]}}</button>
+    <img class="img" id="wash4" src="https://cdn-icons-png.flaticon.com/512/2094/2094251.png" width="160px">
+    <img class="img" id="wash5" src="https://cdn-icons-png.flaticon.com/512/2094/2094251.png" width="160px">
+    <img class="img" id="wash6" src="https://cdn-icons-png.flaticon.com/512/2094/2094251.png" width="160px">
+    <button type="button" id="wash4" onclick="location.href='/chat?lnum=wash4'" class="btn btn-outline-primary">4번 세탁기<br>{{lundata[3]}}</button>
+    <button type="button" id="wash5" onclick="location.href='/chat?lnum=wash5'" class="btn btn-outline-primary">5번 세탁기<br>{{lundata[4]}}</button>
+    <button type="button" id="wash6" onclick="location.href='/chat?lnum=wash6'" class="btn btn-outline-primary">6번 세탁기<br>{{lundata[5]}}</button>
+    <img class="img" id="dry1" src="https://cdn-icons-png.flaticon.com/512/2432/2432216.png" width="160px">
+    <img class="img" id="dry2" src="https://cdn-icons-png.flaticon.com/512/2432/2432216.png" width="160px">
+    <img class="img" id="dry3" src="https://cdn-icons-png.flaticon.com/512/2432/2432216.png" width="160px">
+    <button type="button" id="dry1" onclick="location.href='/chat?lnum=dry1'" class="btn btn-outline-primary">1번 건조기<br>{{lundata[6]}}</button>
+    <button type="button" id="dry2" onclick="location.href='/chat?lnum=dry2'" class="btn btn-outline-primary">2번 건조기<br>{{lundata[7]}}</button>
+    <button type="button" id="dry3" onclick="location.href='/chat?lnum=dry3'" class="btn btn-outline-primary">3번 건조기<br>{{lundata[8]}}</button>
+    <img class="img" id="dry4" src="https://cdn-icons-png.flaticon.com/512/2432/2432216.png" width="160px">
+    <img class="img" id="dry5" src="https://cdn-icons-png.flaticon.com/512/2432/2432216.png" width="160px">
+    <img class="img" id="dry6" src="https://cdn-icons-png.flaticon.com/512/2432/2432216.png" width="160px">
+    <button type="button" id="dry4" onclick="location.href='/chat?lnum=dry4'" class="btn btn-outline-primary">4번 건조기<br>{{lundata[9]}}</button>
+    <button type="button" id="dry5" onclick="location.href='/chat?lnum=dry5'" class="btn btn-outline-primary">5번 건조기<br>{{lundata[10]}}</button>
+    <button type="button" id="dry6" onclick="location.href='/chat?lnum=dry6'" class="btn btn-outline-primary">6번 건조기<br>{{lundata[11]}}</button>
 </body>
 </html>
